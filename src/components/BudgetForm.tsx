@@ -18,7 +18,7 @@ export default function BudgetForm() {
 
 		dispatch({
 			type: "add-budget",
-			payload: { budget },
+			payload: { budget: Number(budget) },
 		});
 	};
 
@@ -39,7 +39,7 @@ export default function BudgetForm() {
 						placeholder="Define tu presupuesto"
 						name="budget"
 						min={0}
-						value={budget}
+						value={Number(budget)}
 						onChange={handleChange}
 					/>
 				</div>
