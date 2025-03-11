@@ -10,7 +10,7 @@ export default function BudgetForm() {
 	};
 
 	const isValid = useMemo(() => {
-		return isNaN(budget) || budget <= 0;
+		return isNaN(budget) || budget <= 1;
 	}, [budget]);
 
 	const handleSubmit = () => (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,7 +38,7 @@ export default function BudgetForm() {
 						className="w-full bg-white border border-gray-200 p-2"
 						placeholder="Define tu presupuesto"
 						name="budget"
-						min={0}
+						min={1}
 						value={Number(budget)}
 						onChange={handleChange}
 					/>
