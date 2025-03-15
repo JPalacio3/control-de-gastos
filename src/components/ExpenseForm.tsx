@@ -7,11 +7,7 @@ export default function ExpenseForm() {
 	return (
 		<>
 			<form action="" className="space-y-4">
-				<legend
-					className="uppercase text-center text-2xl font-black border-b-4 border-blue-600
-        py-2 w-full
-        "
-				>
+				<legend className="uppercase text-center text-2xl font-black border-b-4 	 border-blue-600 p-2 y-2 w-full">
 					Nuevo Gasto
 				</legend>
 
@@ -32,6 +28,7 @@ export default function ExpenseForm() {
 					<label htmlFor="amount" className="text-xl">
 						Cantidad: {""}
 					</label>
+
 					<input
 						type="number"
 						id="amount"
@@ -72,7 +69,8 @@ export default function ExpenseForm() {
 
 				<input
 					type="submit"
-					className="bg-blue-600 hover:bg-blue-700 w-full md:w-auto text-white font-black p-2 px-10 uppercase rounded-lg cursor-pointer"
+					className="bg-blue-600 hover:bg-blue-700 w-full md:w-auto text-white
+ font-black p-2 px-10 uppercase rounded-lg cursor-pointer"
 					value={"Registrar Gasto"}
 				/>
 			</form>
