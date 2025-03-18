@@ -22,7 +22,7 @@ export default function ExpenseModal() {
             dispatch({ type: "show-modal" });
           }}
         >
-          <PlusCircleIcon className="w-16 h-16 text-blue-700 hover:text-blue-600 rounded-full" />
+          <PlusCircleIcon className="w-16 h-16 text-blue-700 hover:text-blue-600 rounded-full " />
         </button>
       </div>
 
@@ -57,7 +57,10 @@ export default function ExpenseModal() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <DialogPanel className="w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <DialogPanel
+                  className="w-full max-w-3xl transform overflow-hidden rounded-2xl
+                bg-white p-6 text-left align-middle shadow-xl transition-all"
+                >
                   <ExpenseForm />
                 </DialogPanel>
               </TransitionChild>
