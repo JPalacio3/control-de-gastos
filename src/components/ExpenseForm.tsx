@@ -41,8 +41,14 @@ export default function ExpenseForm() {
 		//Validar el formulario
 		if (Object.values(expense).includes("")) {
 			setError("Todos los campos son obligatorios");
+
+			setTimeout(() => {
+				setError("");
+			}, 3500);
 			return;
 		}
+
+		setError("");
 		console.log("todo bien");
 	};
 
