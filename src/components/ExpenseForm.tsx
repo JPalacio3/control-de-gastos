@@ -7,16 +7,28 @@ import "react-date-picker/dist/DatePicker.css";
 
 export default function ExpenseForm() {
 	const [expense, setExpense] = useState<DraftExpense>({
-		amount: 0,
+		amount: "",
 		expenseName: "",
 		category: "",
-		date: new Date(),
+		date: null,
 	});
 
 	const handleChangeDate = (value: Value) => {
 		setExpense({
 			...expense,
 			date: value,
+		});
+	};
+
+	const handleChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+	) => {
+		const { name, value } = e.target;
+		const isAmountField = ["amount"].includes(name);
+
+		setExpense({
+			...expense,
+			[name]: isAmountField ? Number(value) : value,
 		});
 	};
 
@@ -38,9 +50,10 @@ export default function ExpenseForm() {
 						type="text"
 						id="expenseName"
 						placeholder="Añade el nombre del gasto"
-						className="bg-slate-100 p-2 rounded-lg animate-blurred-fade-in"
+						className="bg-slate-100 p-2 rounded-lg"
 						name="expenseName"
 						value={expense.expenseName}
+						onChange={handleChange}
 					/>
 				</div>
 
@@ -57,6 +70,7 @@ export default function ExpenseForm() {
 						name="amount"
 						min={1}
 						value={expense.amount}
+						onChange={handleChange}
 					/>
 				</div>
 
@@ -69,6 +83,7 @@ export default function ExpenseForm() {
 						className="bg-slate-100 p-2 rounded-lg"
 						name="category"
 						value={expense.category}
+						onChange={handleChange}
 					>
 						<option value="" defaultChecked hidden>
 							-- Seleccione --
