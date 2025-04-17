@@ -21,7 +21,7 @@ export default function BudgetTracker() {
             strokeLinecap: "round",
             textSize: 12,
           })}
-          text={`${percentage.toFixed(0)}% Gastado`}
+          text={`${percentage.toFixed(1)}% Gastado`}
         />
       </div>
 
