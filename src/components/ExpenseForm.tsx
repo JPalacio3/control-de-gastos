@@ -16,7 +16,8 @@ export default function ExpenseForm() {
   });
 
   const [error, setError] = useState("");
-  const { dispatch, state } = useBudget();
+  const [previousAmount, setPreviousAmount] = useState(0);
+  const { dispatch, state, remainingExpenses } = useBudget();
 
   useEffect(() => {
     if (state.editingId) {
@@ -24,6 +25,7 @@ export default function ExpenseForm() {
         (currentExpense) => currentExpense.id === state.editingId
       )[0];
       setExpense(editingExpense);
+      setPreviousAmount(editingExpense.amount);
     }
   }, [state.editingId]);
 
@@ -60,6 +62,16 @@ export default function ExpenseForm() {
     }
     setError("");
 
+    // Validar que el gasto no supere el presupuesto
+    if (expense.amount - previousAmount > remainingExpenses) {
+      setError(`Gasto por fuera del presupuesto`);
+
+      setTimeout(() => {
+        setError("");
+      }, 3500);
+      return;
+    }
+
     // Agregar o Actualizar el gasto
     if (state.editingId) {
       dispatch({
@@ -77,6 +89,7 @@ export default function ExpenseForm() {
       category: "",
       date: new Date(),
     });
+    setPreviousAmount(0);
   };
 
   return (
@@ -84,7 +97,7 @@ export default function ExpenseForm() {
       <form action="" className="space-y-5" onSubmit={handleSubmit}>
         <legend
           className="uppercase text-center text-2xl font-black border-b-4
-					border-blue-600 flex p-2 y-2 w-full"
+					border-blue-600 flex p-2 y-2 w-full max-w-full"
         >
           {state.editingId ? "Actualizar Gasto" : "Nuevo Gasto"}
         </legend>
