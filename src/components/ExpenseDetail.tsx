@@ -11,6 +11,7 @@ import { Expense } from "../types";
 import AmountDisplay from "./AmountDisplay";
 import { formatDate } from "./helpers/utils";
 import { categories } from "../data/categories";
+import { useBudget } from "../hooks/useBudget";
 import "react-swipeable-list/dist/styles.css";
 
 type ExpenseDetailProps = {
@@ -18,6 +19,8 @@ type ExpenseDetailProps = {
 };
 
 export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
+  const { dispatch } = useBudget();
+
   const categoryInfo = useMemo(
     () => categories.filter((cat) => cat.id === expense.category)[0],
     [expense]
@@ -33,7 +36,12 @@ export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => console.log("Eliminando")}>
+      <SwipeAction
+        onClick={() =>
+          dispatch({ type: "remove-expense", payload: { id: expense.id } })
+        }
+        destructive={true}
+      >
         Eliminar
       </SwipeAction>
     </TrailingActions>
@@ -42,13 +50,13 @@ export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
   return (
     <SwipeableList>
       <SwipeableListItem
-        maxSwipe={30}
+        maxSwipe={1}
         leadingActions={leadingActions()}
         trailingActions={trailingActions()}
       >
         <div
           className="bg-white shadow-lg p-10 md:mx-10 border-b
-    border-gray-200 rounded-lg flex gap-5 items-center "
+    border-gray-200 rounded-lg flex gap-5 items-center w-full"
         >
           <div className="">
             <img
@@ -67,9 +75,8 @@ export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
             <p className="text-slate-600 text-sm">
               {formatDate(expense.date!.toString())}
             </p>
-
-            <AmountDisplay amount={expense.amount} />
           </div>
+          <AmountDisplay amount={expense.amount} />
           <div className=""></div>
         </div>
       </SwipeableListItem>
