@@ -2,6 +2,8 @@
 
 ## [Visita la aplicación](https://controlde-gastos.netlify.app/)
 
+![Logo del Proyecto](/public/Planificador-de-gastos-web.jpg)
+
 Control de Gastos es una aplicación web moderna y atractiva diseñada para ayudarte a gestionar tus finanzas personales de manera eficiente y sencilla. Construida con React, TypeScript y Vite, esta app ofrece una experiencia de usuario fluida y un rendimiento optimizado.
 
 ## Características Principales
