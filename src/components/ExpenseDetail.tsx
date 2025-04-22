@@ -60,7 +60,7 @@ export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
       >
         <div
           className="bg-white shadow-lg p-10 md:mx-10 border-b
-    border-gray-200 rounded-lg flex gap-5 items-center w-full"
+    border-gray-200 rounded-lg flex gap-5 items-center w-full mb-2"
         >
           <div className="">
             <img
